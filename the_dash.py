@@ -11,8 +11,8 @@ st.header("""
 
 @st.cache(allow_output_mutation=True)
 def data():
-	team_df = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/teams.xlsx?raw=true')
-	dashes = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/dashes.xlsx?raw=true')
+	team_df = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/teams.csv?raw=true')
+	dashes = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/dashes.csv?raw=true')
 	dashes_list = dashes.Dash.to_list()
 	return team_df, dashes_list
 
