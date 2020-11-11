@@ -13,11 +13,15 @@ st.header("""
 @st.cache(allow_output_mutation=True)
 def data():
 	team_df = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/teams.csv?raw=true')
-	dashes = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/The_Dash_Responses - Form responses 1.csv?raw=true')
-	dashes_list = dashes.Dash.to_list()
-	return team_df, dashes_list
+	dashes = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/The_Dash_Responses.csv?raw=true')
+	dashes.drop('Timestamp',axis=1,inplace=True)
+	dashes = dashes.stack().reset_index()
+	dashes.columns = ['index','question','answer']
+	dashes_list = dashes.answer.to_list()
+	dash_num = len(dashes)
+	return team_df, dashes_list, dash_num
 
-team_df, dashes_list = data()
+team_df, dashes_list, dash_num = data()
 
 teams = team_df[['Team','Name']].sort_values('Team').reset_index(drop=True)
 gummies = team_df[team_df.Team=='Gummies']['Name'].reset_index(drop=True)
@@ -42,7 +46,7 @@ def shuffle(x,num):
     r3 = random.sample(x, num)
     return r1, r2, r3
 
-r1, r2, r3 = shuffle(dashes_list,20)
+r1, r2, r3 = shuffle(dashes_list,dash_num)
 
 
 
@@ -57,10 +61,10 @@ def main():
 		st.write("2) If you are not the first person, enter the clue count to start")
 		st.write("3) After 60 seconds, your turn is over")
 		st.write("4) Relay the clue count to the group and place your phone face down on the table")
-		ss.x= st.number_input('Clue Count',min_value=-1, max_value=4, value=-1,step=1)
+		ss.x= st.number_input('Clue Count',min_value=-1, max_value=dash_num, value=-1,step=1)
 		if ss.x==-1:
 			st.markdown('**Start the round!**')
-		elif ss.x ==4:
+		elif ss.x ==dash_num:
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
@@ -72,10 +76,10 @@ def main():
 		st.write("2) If you are not the first person, enter the clue count to start")
 		st.write("3) After 60 seconds, your turn is over")
 		st.write("4) Relay the clue count to the group and place your phone face down on the table")
-		ss.x= st.number_input('Clue Count',min_value=-1, max_value=20, value=-1,step=1)
+		ss.x= st.number_input('Clue Count',min_value=-1, max_value=dash_num, value=-1,step=1)
 		if ss.x==-1:
 			st.markdown('**Start the round!**')
-		elif ss.x ==20:
+		elif ss.x ==dash_num:
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
@@ -88,10 +92,10 @@ def main():
 		st.write("2) If you are not the first person, enter the clue count to start")
 		st.write("3) After 60 seconds, your turn is over")
 		st.write("4) Relay the clue count to the group and place your phone face down on the table")
-		ss.x= st.number_input('Clue Count',min_value=-1, max_value=20, value=-1,step=1)
+		ss.x= st.number_input('Clue Count',min_value=-1, max_value=dash_num, value=-1,step=1)
 		if ss.x==-1:
 			st.markdown('**Start the round!**')
-		elif ss.x ==20:
+		elif ss.x ==dash_num:
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
@@ -104,10 +108,10 @@ def main():
 		st.write("2) If you are not the first person, enter the clue count to start")
 		st.write("3) After 60 seconds, your turn is over")
 		st.write("4) Relay the clue count to the group and place your phone face down on the table")
-		ss.x= st.number_input('Clue Count',min_value=-1, max_value=20, value=-1,step=1)
+		ss.x= st.number_input('Clue Count',min_value=-1, max_value=dash_num, value=-1,step=1)
 		if ss.x==-1:
 			st.markdown('**Start the round!**')
-		elif ss.x ==20:
+		elif ss.x ==dash_num:
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
