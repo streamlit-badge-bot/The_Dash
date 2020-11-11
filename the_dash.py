@@ -3,7 +3,6 @@ import numpy as np
 import streamlit as st
 import random
 import SessionState
-!pip install xlrd
 
 st.markdown('[![datandstories](https://github.com/michael-william/CBD/raw/master/resources/DS_logo_200.png)](https://dataandstories.com)', unsafe_allow_html=True)
 st.header("""
@@ -12,8 +11,8 @@ st.header("""
 
 @st.cache(allow_output_mutation=True)
 def data():
-	team_df = pd.read_excel('https://github.com/michael-william/The_Dash/blob/master/resources/teams.xlsx?raw=true')
-	dashes = pd.read_excel('https://github.com/michael-william/The_Dash/blob/master/resources/dashes.xlsx?raw=true')
+	team_df = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/teams.xlsx?raw=true')
+	dashes = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/dashes.xlsx?raw=true')
 	dashes_list = dashes.Dash.to_list()
 	return team_df, dashes_list
 
