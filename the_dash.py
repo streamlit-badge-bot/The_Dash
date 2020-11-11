@@ -7,6 +7,7 @@ import SessionState
 st.markdown('[![datandstories](https://github.com/michael-william/CBD/raw/master/resources/DS_logo_200.png)](https://dataandstories.com)', unsafe_allow_html=True)
 st.header("""
 **The Dash**
+*A fun game combining Balderdash, Charades, and Dictionary*
 """)
 
 @st.cache(allow_output_mutation=True)
@@ -47,7 +48,7 @@ r1, r2, r3 = shuffle(dashes_list,20)
 
 def main():
 
-	round_type = st.selectbox('Round',('Test','Description','Charades','1 Word'))
+	round_type = st.selectbox('Choose the round',('Test','Description','Charades','1 Word'))
 	current_round = round_type
 	if current_round =='Test':
 		r=['This is a sample dash', 'cruise missile lana', 'gypsy Molly', 'Mike is the greatest!']
