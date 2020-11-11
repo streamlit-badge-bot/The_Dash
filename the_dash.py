@@ -3,6 +3,7 @@ import numpy as np
 import streamlit as st
 import random
 import SessionState
+!pip install xlrd
 
 st.markdown('[![datandstories](https://github.com/michael-william/CBD/raw/master/resources/DS_logo_200.png)](https://dataandstories.com)', unsafe_allow_html=True)
 st.header("""
