@@ -61,7 +61,7 @@ def main():
 		st.write("2) If you are not the first person, enter the clue count to start")
 		st.write("3) After 60 seconds, your turn is over")
 		st.write("4) Relay the clue count to the group and place your phone face down on the table")
-		ss.x= st.number_input('Clue Count',min_value=-1, max_value=dash_num, value=-1,step=1)
+		ss.x = st.number_input('Clue Count',min_value=-1, max_value=dash_num, value=-1,step=1)
 		if ss.x==-1:
 			st.markdown('**Start the round!**')
 		elif ss.x ==dash_num:
@@ -71,6 +71,7 @@ def main():
 			st.markdown('**{}**'.format(r[ss.x]))
 	elif current_round =='Description':
 		r=r1
+		ss.x=-1
 		st.header("Welcome to the 1st Round of The Dash")
 		st.write("1) If you are the first person in the round, click the plus sign for the next word")
 		st.write("2) If you are not the first person, enter the clue count to start")
@@ -83,7 +84,7 @@ def main():
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
-			st.write(r[ss.x])
+			st.write('**{}**'.format(r[ss.x]))
 	elif current_round =='Charades':
 		r=r2
 		st.header("Welcome to the 2nd Round of The Dash")
@@ -99,7 +100,7 @@ def main():
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
-			st.write(r[ss.x])
+			st.write('**{}**'.format(r[ss.x]))
 	else:
 		r=r3
 		st.header("Welcome to the Last Round of The Dash!")
@@ -115,7 +116,7 @@ def main():
 			st.markdown('**End of Round**!')
 			st.balloons()
 		else:
-			st.write(r[ss.x])
+			st.write('**{}**'.format(r[ss.x]))
 
 
 if __name__ == "__main__":
