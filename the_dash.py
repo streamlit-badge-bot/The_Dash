@@ -16,12 +16,12 @@ def data():
 	dashes = pd.read_csv('https://github.com/michael-william/The_Dash/blob/master/resources/The_Dash_Responses.csv?raw=true')
 	dashes.drop('Timestamp',axis=1,inplace=True)
 	dashes = dashes.stack().reset_index()
-	dashes.columns = ['index','question','answer']
-	dashes_list = dashes.answer.to_list()
+	dashes.columns = ['index','question','dashes']
+	dashes_list = dashes.dashes.to_list()
 	dash_num = len(dashes)
-	return team_df, dashes_list, dash_num
+	return team_df, dashes_list, dash_num, dashes
 
-team_df, dashes_list, dash_num = data()
+team_df, dashes_list, dash_num, dashes = data()
 
 teams = team_df[['Team','Name']].sort_values('Team').reset_index(drop=True)
 gummies = team_df[team_df.Team=='Gummies']['Name'].reset_index(drop=True)
@@ -52,7 +52,7 @@ r1, r2, r3 = shuffle(dashes_list,dash_num)
 
 def main():
 
-	round_type = st.selectbox('Choose the round',('Test','Description','Charades','1 Word'))
+	round_type = st.selectbox('Choose the round',('Test','Description','Charades','1 Word','Review'))
 	current_round = round_type
 	if current_round =='Test':
 		r=['This is a sample dash', 'cruise missile lana', 'gypsy Molly', 'Mike is the greatest!']
@@ -105,7 +105,7 @@ def main():
 			st.balloons()
 		else:
 			st.write(r[ss.x])
-	else:
+	elif current_round =='1 Word':
 		r=r3
 		st.header("Welcome to the Last Round of The Dash!")
 		st.write("Use only one word,including proper nouns, to help your team guess the clue")
@@ -122,6 +122,8 @@ def main():
 			st.balloons()
 		else:
 			st.write(r[ss.x])
+	else:
+		st.dataframe(dashes['dashes'])
 
 
 if __name__ == "__main__":
